@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS Timer</title>
+  <style>
+    *{
+      background-color: rgb(242, 242, 209);
+    }
+    #watch{
+      background-color: rgb(209, 231, 188); width: 40%; height: 40vh; margin:100px auto; display: flex; border-radius: 5%;
+      flex-direction: column; justify-content: center; align-items: center;
+    }
+    button{
+      border: 2px solid red; margin: 10px; border-radius: 4px; background-color: rgb(157, 200, 186);
+    }
+    button:hover{
+      cursor: pointer;
+    }
+    @media screen and (max-width:590px) {
+      #watch{
+        width: 90%; height: 50vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="watch">
+    <h1>JS Timer</h1>
+    <h2 id="stopwatch">00h:00m:00s</h2>
+    <p>
+      <button onclick="start()">start</button>
+      <button onclick="pause()">Pause</button>
+      <button onclick="reset()">Reset</button>
+    </p>
+  </div>
+
+</body>
+<script>
+  let timer
+  let second = 0
+  let minute = 0
+  let hour = 0
+  let stopWatch = document.getElementById("stopwatch")
+  function start(){
+     timer = setInterval(()=>{
+      second++
+      stopWatch.textContent = `${hour}h:${minute}m:${second}s`
+      if(second % 60 ==0){
+        minute++
+        second = 0
+        stopWatch.textContent = `${hour}h:${minute}m:${second}s`
+      } 
+      if((minute%60 ==0) &&(minute>1)){
+        minute = 0
+        hour++
+        stopWatch,textContent = `${hour}h:${minute}m:${second}s`
+      }
+
+    },1000)
+  }
+   function pause(){
+    clearInterval(timer)
+   }
+
+   function reset(){
+    stopWatch.textContent = "00h:00m:00s"
+    clearInterval(timer)
+    second = 0
+    minute = 0
+    hour = 0
+   }
+</script>
+</html>

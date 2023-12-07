@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StopWatch</title>
+  <style>
+    *{
+      background-color: beige;
+    }
+    #watch{
+      background-color: chartreuse; width: 40%; height: 40vh; margin:100px auto; display: flex; border-radius: 5%;
+      flex-direction: column; justify-content: center; align-items: center;
+    }
+    button{
+      border: 2px solid red; margin: 10px; border-radius: 4px; background-color: aquamarine;
+    }
+    @media screen and (max-width:590px) {
+      #watch{
+        width: 90%; height: 50vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="watch">
+    <h1>JS Stopwatch</h1>
+    <h2 id="stopwatch">0s:00</h2>
+    <p>
+      <button onclick="start()">start</button>
+      <button onclick="pause()">Pause</button>
+      <button onclick="reset()">Reset</button>
+    </p>
+  </div>
+
+</body>
+<script>
+  let timer
+  let second = 0
+  let cs = 0
+  let stopWatch = document.getElementById("stopwatch")
+  function start(){
+     timer = setInterval(()=>{
+      cs++
+      stopWatch.textContent = `${second}s : ${cs}`
+      if(cs%100 ==0){
+        second++
+        cs = 0
+        stopWatch.textContent = `${second} : ${cs}`
+      }
+    },10)
+  }
+   function pause(){
+    clearInterval(timer)
+   }
+
+   function reset(){
+    clearInterval(timer)
+    stopWatch.textContent = "0:00"
+    cs = 0
+    second = 0
+   }
+   console.log(100/100)
+</script>
+</html>
